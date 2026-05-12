@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscador de artículos | YiQi</title>
+
+  <!-- Design system YiQi: se toma directamente del repositorio indicado -->
+  <link rel="stylesheet" href="https://diguardia.github.io/yiqi-imagen/styles.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+
+<body data-theme="system">
+  <main class="app-shell">
+    <section class="hero-panel" aria-labelledby="titulo-principal">
+      <div class="eyebrow">Dentalab · Consulta interna</div>
+      <h1 id="titulo-principal">Buscador de artículos</h1>
+      <p class="hero-copy">
+        Importá una planilla Excel y consultá SKU, artículo, CRM/costo y precio final de venta en
+        <strong>Lista 1 - Contado</strong>.
+      </p>
+
+      <div class="search-wrap" role="search">
+        <label for="searchInput" class="sr-only">Buscar por SKU o nombre de artículo</label>
+        <input
+          id="searchInput"
+          class="main-search"
+          type="search"
+          placeholder="Buscar por SKU o nombre de artículo..."
+          autocomplete="off"
+        />
+      </div>
+    </section>
+
+    <section class="upload-panel" aria-labelledby="importar-excel">
+      <div class="panel-header">
+        <div>
+          <p class="section-kicker">Importación</p>
+          <h2 id="importar-excel">Cargar datos desde Excel</h2>
+        </div>
+        <button id="clearButton" class="secondary-button" type="button">Limpiar datos</button>
+      </div>
+
+      <div id="dropZone" class="drop-zone" tabindex="0">
+        <input id="fileInput" type="file" accept=".xlsx,.xls,.csv" hidden />
+        <div class="drop-icon" aria-hidden="true">↥</div>
+        <div>
+          <p class="drop-title">Arrastrá el Excel acá o seleccioná un archivo</p>
+          <p class="drop-help">Formatos admitidos: .xlsx, .xls y .csv</p>
+        </div>
+        <button id="fileButton" class="primary-button" type="button">Seleccionar Excel</button>
+      </div>
+
+      <div class="format-help">
+        <span>Columnas esperadas:</span>
+        <code>SKU</code>
+        <code>Nombre del artículo</code>
+        <code>CRM</code>
+        <code>Lista 1 - Contado</code>
+      </div>
+
+      <p id="statusMessage" class="status-message" role="status">
+        Todavía no hay datos importados. Podés cargar una planilla o usar datos de ejemplo.
+      </p>
+
+      <button id="demoButton" class="ghost-button" type="button">Usar datos de ejemplo</button>
+    </section>
+
+    <section class="metrics-grid" aria-label="Resumen de datos importados">
+      <article class="metric-card">
+        <span>Artículos cargados</span>
+        <strong id="totalItems">0</strong>
+      </article>
+      <article class="metric-card">
+        <span>Resultados visibles</span>
+        <strong id="visibleItems">0</strong>
+      </article>
+      <article class="metric-card">
+        <span>Archivo</span>
+        <strong id="fileName">Sin archivo</strong>
+      </article>
+    </section>
+
+    <section class="table-panel" aria-labelledby="tabla-articulos">
+      <div class="table-header">
+        <div>
+          <p class="section-kicker">Listado</p>
+          <h2 id="tabla-articulos">Artículos importados</h2>
+        </div>
+        <p id="renderNotice" class="render-notice"></p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>SKU</th>
+              <th>Nombre del artículo</th>
+              <th class="number-col">CRM / Costo</th>
+              <th class="number-col">Lista 1 - Contado</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr class="empty-row">
+              <td colspan="4">Importá un Excel para completar el cuadro.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
