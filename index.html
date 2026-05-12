@@ -731,7 +731,7 @@
       const btn = (label, page, disabled = false, active = false) => {
         const cls = ['page-btn', active ? 'active' : ''].filter(Boolean).join(' ');
         return `<button class="${cls}" ${disabled ? 'disabled' : ''}
-          onclick="renderTable(${page}, ${JSON.stringify(q)})">${label}</button>`;
+          onclick="goToPage(${page})">${label}</button>`;
       };
 
       const ellipsis = () => `<span class="page-ellipsis">…</span>`;
@@ -782,6 +782,12 @@
         document.getElementById('fileInput').dispatchEvent(new Event('change'));
       }
     });
+
+    /* ── CAMBIO DE PÁGINA ── */
+    function goToPage(page) {
+      const q = document.getElementById('searchInput').value.trim();
+      renderTable(page, q);
+    }
 
     /* ── ORDENAMIENTO ── */
     function sortBy(key) {
